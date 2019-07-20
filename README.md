@@ -1,0 +1,2 @@
+# MyApp
+playframework + slick + postgresql
