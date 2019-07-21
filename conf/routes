@@ -1,5 +1,6 @@
-GET        /hello           controllers.HelloController.hello
+GET         /hello           controllers.HelloController.hello
 
-GET        /user            controllers.UserController.findAllUsers
-GET        /user/:id        controllers.UserController.findUserById(id: Int)
-POST       /user            controllers.UserController.create
+GET         /user            controllers.UserController.findAllUsers
+GET         /user/:id        controllers.UserController.findUserById(id: Int)
+POST        /user            controllers.UserController.create
+PUT         /user/:id        controllers.UserController.update(id: Int)
