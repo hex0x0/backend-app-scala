@@ -21,14 +21,14 @@ class UserController @Inject()(cc: ControllerComponents, userService: UserServic
     }
   }
 
-  def create: Action[JsValue] = Action.async(parse.json) { request =>
+  def create: Action[JsValue] = Action(parse.json).async { request =>
     request.body.validate[UserForm].fold(
       error => Future(BadRequest(Json.obj("msg" -> error.toString))),
       form => userService.createUser(form).map(dto => Ok(Json.toJson(dto)))
     )
   }
 
-  def update(id: Int): Action[JsValue] = Action.async(parse.json) { request =>
+  def update(id: Int): Action[JsValue] = Action(parse.json).async { request =>
     request.body.validate[UserForm].fold(
       error => Future(BadRequest(Json.obj("msg" -> error.toString))),
       form => userService.updateUser(id, form).map(result => Ok(Json.toJson(result)))
