@@ -30,8 +30,8 @@ class UserDao {
     db.run(users.result)
   }
 
-  def create(user: User): Future[Int] = {
-    db.run(users += (user))
+  def create(user: User): Future[User] = {
+    db.run(users returning users += user)
   }
 
   def update(id: Int, user: User): Future[Int] = {

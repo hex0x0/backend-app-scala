@@ -2,6 +2,7 @@ package services
 
 import dao.UserDao
 import dto.UserDto
+import form.UserForm
 import javax.inject.Inject
 import model.User
 
@@ -20,15 +21,17 @@ class UserService @Inject()(userDao: UserDao) {
     }
   }
 
-  def createUser(user: User) = {
-    userDao.create(user)
+  def createUser(form: UserForm): Future[UserDto] = {
+    val user = buildUser(form)
+      userDao.create(user).map(u => buildUserDto(u))
   }
 
-  def updateUser(id: Int, user: User) = {
+  def updateUser(id: Int, form: UserForm): Future[Int] = {
+    val user = buildUser(form)
     userDao.update(id, user)
   }
 
-  def delete(id: Int) = {
+  def delete(id: Int): Future[Int] = {
     userDao.delete(id)
   }
 
@@ -38,6 +41,15 @@ class UserService @Inject()(userDao: UserDao) {
       user.name,
       user.age.get,
       user.city.get
+    )
+  }
+
+  private def buildUser(form: UserForm) = {
+    User(
+      None,
+      form.name,
+      form.age,
+      form.city
     )
   }
 }
