@@ -1,1 +1,4 @@
-GET             /hello        controllers.HelloController.hello
+GET        /hello           controllers.HelloController.hello
+
+GET        /user            controllers.UserController.findAllUsers
+GET        /user/:id        controllers.UserController.findUserById(id: Int)
