@@ -37,7 +37,6 @@ class UserService @Inject()(userDao: UserDao) {
 
   private def buildUserDto(user: User) = {
     UserDto(
-      user.id.get,
       user.name,
       user.age.get,
       user.city.get
