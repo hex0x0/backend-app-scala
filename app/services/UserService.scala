@@ -49,7 +49,8 @@ class UserService @Inject()(userDao: UserDao) {
       None,
       form.name,
       form.age,
-      form.city
+      form.city,
+      form.password
     )
   }
 }

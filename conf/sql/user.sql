@@ -4,6 +4,7 @@ CREATE TABLE public."user"
     name character varying COLLATE pg_catalog."default" NOT NULL,
     age integer,
     city character varying COLLATE pg_catalog."default",
+    password character varying COLLATE NOT NULL,
     CONSTRAINT user_pkey PRIMARY KEY (id)
 )
 WITH (

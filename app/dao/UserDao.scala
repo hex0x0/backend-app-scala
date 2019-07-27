@@ -15,7 +15,9 @@ class UserTable(tag: Tag) extends Table[User](tag, "user") {
 
   def city: Rep[Option[String]] = column[Option[String]]("city")
 
-  def * : ProvenShape[User] = (id, name, age, city) <> (User.tupled, User.unapply)
+  def password: Rep[String] = column[String]("password")
+
+  def * : ProvenShape[User] = (id, name, age, city, password) <> (User.tupled, User.unapply)
 }
 
 class UserDao {
@@ -35,7 +37,11 @@ class UserDao {
   }
 
   def update(id: Int, user: User): Future[Int] = {
-    db.run(users.filter(_.id === id).map(u => (u.name, u.age, u.city)).update((user.name, user.age, user.city)))
+    db.run(
+      users.filter(_.id === id)
+        .map(u => (u.name, u.age, u.city, u.password))
+        .update((user.name, user.age, user.city, user.password))
+    )
   }
 
   def delete(id: Int): Future[Int] = {
