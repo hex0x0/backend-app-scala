@@ -16,21 +16,21 @@ class UserController @Inject()(cc: ControllerComponents, userService: UserServic
 
   def findUserById(id: Int): Action[AnyContent] = Action.async {
     userService.findUser(id).map {
-      case Left(error) => BadRequest(Json.obj("msg" -> error))
+      case Left(error) => BadRequest(Json.obj("message" -> error))
       case Right(dto) => Ok(Json.toJson(dto))
     }
   }
 
   def create: Action[JsValue] = Action(parse.json).async { request =>
     request.body.validate[UserForm].fold(
-      error => Future(BadRequest(Json.obj("msg" -> error.toString))),
+      error => Future(BadRequest(Json.obj("message" -> error.toString))),
       form => userService.createUser(form).map(dto => Ok(Json.toJson(dto)))
     )
   }
 
   def update(id: Int): Action[JsValue] = Action(parse.json).async { request =>
     request.body.validate[UserForm].fold(
-      error => Future(BadRequest(Json.obj("msg" -> error.toString))),
+      error => Future(BadRequest(Json.obj("message" -> error.toString))),
       form => userService.updateUser(id, form).map(result => Ok(Json.toJson(result)))
     )
   }

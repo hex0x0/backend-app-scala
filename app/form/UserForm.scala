@@ -1,5 +1,6 @@
 package form
 
+import model.User
 import play.api.libs.functional.syntax._
 import play.api.libs.json.{JsPath, Reads}
 
@@ -7,7 +8,17 @@ case class UserForm(
                      name: String,
                      age: Option[Int],
                      city: Option[String],
-                     password: String)
+                     password: String) {
+  def toUser: User = {
+    User(
+      None,
+      name,
+      age,
+      city,
+      password
+    )
+  }
+}
 
 object UserForm {
   implicit val reads: Reads[UserForm] = (
