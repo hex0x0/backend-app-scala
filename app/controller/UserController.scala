@@ -34,4 +34,8 @@ class UserController @Inject()(cc: ControllerComponents, userService: UserServic
       form => userService.updateUser(id, form).map(result => Ok(Json.toJson(result)))
     )
   }
+
+  def bar(id: Int) = Action(parse.empty).async { request =>
+    userService.foo(id).map(_ => Ok(Json.toJson("ok")))
+  }
 }
