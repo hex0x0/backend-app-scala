@@ -22,7 +22,7 @@ class UserTable(tag: Tag) extends Table[User](tag, "user") {
 
 class UserDao {
   val users = TableQuery[UserTable]
-  val db = Database.forConfig("app")
+  val db = Database.forConfig("slick")
 
   def findById(id: Int): Future[Option[User]] = {
     db.run(users.filter(_.id === id).result.headOption)
