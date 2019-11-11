@@ -7,4 +7,5 @@ object Dependencies {
   val guava = "com.google.guava" % "guava" % "27.0-jre"
   val gson = "com.google.code.gson" % "gson" % "2.8.5"
   val scalatest = "org.scalatest" %% "scalatest" % "3.0.8" % "test"
+  val mockito = "org.mockito" % "mockito-core" % "2.23.4" % Test
 }
