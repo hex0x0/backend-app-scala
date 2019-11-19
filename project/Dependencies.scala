@@ -8,4 +8,5 @@ object Dependencies {
   val gson = "com.google.code.gson" % "gson" % "2.8.5"
   val scalatest = "org.scalatest" %% "scalatest" % "3.0.8" % "test"
   val mockito = "org.mockito" % "mockito-core" % "2.23.4" % Test
+  val redis = "com.github.etaty" %% "rediscala" % "1.9.0"
 }
