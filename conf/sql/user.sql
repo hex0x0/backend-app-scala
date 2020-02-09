@@ -1,16 +1,12 @@
-CREATE TABLE public."user"
-(
-    id bigint NOT NULL DEFAULT nextval('user_id_seq'::regclass),
-    name character varying COLLATE pg_catalog."default" NOT NULL,
-    age integer,
-    city character varying COLLATE pg_catalog."default",
-    password character varying COLLATE NOT NULL,
-    CONSTRAINT user_pkey PRIMARY KEY (id)
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
+-- Sequence and defined type
+CREATE SEQUENCE IF NOT EXISTS user_id_seq;
 
-ALTER TABLE public."user"
-    OWNER to apps;
+-- Table Definition
+CREATE TABLE "public"."user" (
+    "id" int4 NOT NULL DEFAULT nextval('user_id_seq'::regclass),
+    "name" varchar NOT NULL,
+    "age" int4,
+    "city" varchar,
+    "password" varchar,
+    PRIMARY KEY ("id")
+);
