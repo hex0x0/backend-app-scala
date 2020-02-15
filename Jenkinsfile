@@ -1,10 +1,22 @@
 pipeline {
-    agent { docker { image 'hseeberger/scala-sbt:graalvm-ce-19.3.0-java11_1.3.8_2.12.10' } }
+    agent any
     stages {
-        stage('build') {
-            steps {
-                sh 'sbt -v'
-            }
+        stage('Build') {
+            sh 'echo "Hello, world!"'
+        }
+    }
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
         }
     }
 }
