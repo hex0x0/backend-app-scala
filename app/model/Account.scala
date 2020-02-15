@@ -1,21 +1,19 @@
 package model
 
-import form.UserForm
+import form.AccountForm
 
-case class User(
+case class Account(
                  id: Option[Int],
                  name: String,
-                 age: Option[Int],
-                 city: Option[String],
+                 email: String,
                  password: String) {
 
   def getId: Int = id.get
 
-  def buildUser(form: UserForm) = User(
+  def buildAccount(form: AccountForm): Account = Account(
     id = None,
     name = form.name,
-    age = form.age,
-    city = form.city,
+    email = form.email,
     password = form.password
   )
 }

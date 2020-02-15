@@ -1,6 +1,7 @@
-GET         /hello            controller.HelloController.hello
+GET         /hello               controller.HelloController.hello()
 
-GET         /users            controller.UserController.findAllUsers()
-GET         /users/:id        controller.UserController.findUserById(id: Int)
-POST        /users            controller.UserController.create()
-PUT         /users/:id        controller.UserController.update(id: Int)
+POST        /accounts            controller.AccountController.create()
+#DELETE      /accounts/:id        controller.AccountController.delete()
+PUT         /accounts/:id        controller.AccountController.update(id: Int)
+GET         /accounts            controller.AccountController.all()
+GET         /accounts/:id        controller.AccountController.findById(id: Int)

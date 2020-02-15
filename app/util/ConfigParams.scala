@@ -1,15 +1,16 @@
 package util
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.ConfigFactory
 import javax.inject.Inject
+import play.api.Configuration
 
-class ConfigLoader @Inject()(config: Config) {
+class ConfigParams @Inject()(config: Configuration) {
   def getDbUrl: String = {
-    config.getString("slick.url")
+    config.get[String]("slick.url")
   }
 }
 
-object ConfigLoader {
+object ConfigParams {
   def main(args: Array[String]): Unit = {
     val config = ConfigFactory.load()
     val app = config.getConfig("slick")
