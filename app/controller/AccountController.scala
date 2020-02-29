@@ -2,6 +2,7 @@ package controller
 
 import form.AccountForm
 import javax.inject.Inject
+import org.apache.logging.log4j.LogManager
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
 import service.AccountService
@@ -10,7 +11,11 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 class AccountController @Inject()(cc: ControllerComponents, userService: AccountService) extends AbstractController(cc) {
+
+  private val logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME)
+
   def all: Action[AnyContent] = Action.async {
+    logger.info("Finding all accounts.")
     userService.all.map(u => Ok(Json.toJson(u)))
   }
 
@@ -34,4 +39,5 @@ class AccountController @Inject()(cc: ControllerComponents, userService: Account
       form => userService.update(id, form).map(result => Ok(Json.toJson(result)))
     )
   }
+
 }

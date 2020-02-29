@@ -10,13 +10,13 @@ import slick.relational.RelationalProfile
 import scala.concurrent.Future
 
 class AccountTable(tag: Tag) extends Table[Account](tag, "accounts") {
-  def id: Rep[Option[Int]] = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
+  def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
 
-  def name: Rep[String] = column[String]("name")
+  def name = column[String]("name")
 
-  def email: Rep[String] = column[String]("email")
+  def email = column[String]("email")
 
-  def password: Rep[String] = column[String]("password")
+  def password = column[String]("password")
 
   def * : ProvenShape[Account] = (id, name, email, password) <> (Account.tupled, Account.unapply)
 }

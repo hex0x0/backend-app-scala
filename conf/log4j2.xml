@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitorInterval="30">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d{ABSOLUTE} [%l] %level %msg%n}"/>
+        </Console>
+
+<!--        <File name="File" fileName="logs/test.log" append="true">-->
+<!--            <PatternLayout pattern="%d %p %l %m%n"/>-->
+<!--        </File>-->
+
+        <RollingFile name="RollingFile"
+                     filename="logs/app.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+
+            <PatternLayout pattern="%d{ABSOLUTE} [%l] %level %msg%n"/>
+            <SizeBasedTriggeringPolicy size="500MB"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+        <logger name="dao" level="error">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </logger>
+    </Loggers>
+</Configuration>
