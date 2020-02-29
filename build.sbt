@@ -9,7 +9,7 @@ enablePlugins(DockerPlugin)
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 libraryDependencies ++= Seq(guice, ws, play, slick, postgresql,
-  guava, gson, scalatest, mockito, redis)
+  guava, gson, scalatest, mockito, redis) ++ log4j2
 
 // disable the ability of creating pid file by ProdServerStarter
 javaOptions in Universal ++= Seq(

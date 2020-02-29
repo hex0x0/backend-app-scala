@@ -9,4 +9,7 @@ object Dependencies {
   val scalatest = "org.scalatest" %% "scalatest" % "3.0.8" % "test"
   val mockito = "org.mockito" % "mockito-core" % "2.23.4" % Test
   val redis = "com.github.etaty" %% "rediscala" % "1.9.0"
+  val log4j2: Seq[ModuleID] = Seq("org.apache.logging.log4j" % "log4j-api" % "2.13.1",
+    "org.apache.logging.log4j" % "log4j-core" % "2.13.1"
+  )
 }
