@@ -2,18 +2,18 @@
 <Configuration status="INFO" monitorInterval="30">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{%d{ABSOLUTE} [%l] %level %msg%n}"/>
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss} [%l] %level %msg%n}"/>
         </Console>
 
-<!--        <File name="File" fileName="logs/test.log" append="true">-->
-<!--            <PatternLayout pattern="%d %p %l %m%n"/>-->
-<!--        </File>-->
+        <!--        <File name="File" fileName="logs/test.log" append="true">-->
+        <!--            <PatternLayout pattern="%d %p %l %m%n"/>-->
+        <!--        </File>-->
 
         <RollingFile name="RollingFile"
                      filename="logs/app.log"
-                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+                     filePattern="logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}.log.gz">
 
-            <PatternLayout pattern="%d{ABSOLUTE} [%l] %level %msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss} [%l] %level %msg%n"/>
             <SizeBasedTriggeringPolicy size="500MB"/>
         </RollingFile>
     </Appenders>
